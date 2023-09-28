@@ -74,7 +74,7 @@
           }
         },
         speedUp() {
-          this.speed += 1.2;
+          this.speed += 2;
         },
         draw() {
           canvasCtx.fillRect(this.x, this.y, this.width, this.height);
@@ -97,9 +97,9 @@
       let isGameOver = false;
 
       function checkGameOver() {
-        if (score.human === 5) {
+        if (score.human === 3) {
           showWinner("Player");
-        } else if (score.ai === 5) {
+        } else if (score.ai === 3) {
           showWinner("Computer");
         }
       }
@@ -127,10 +127,10 @@
       }
 
       const ball = {
-        x: 100,
+        x: field.width / 2,
         y: field.height / 2,
         radius: 10,
-        speed: 6,
+        speed: 7,
         directionX: 1,
         directionY: 1,
 
@@ -185,10 +185,10 @@
           rightPaddle.y = field.height / 2;
         },
         gameReset() {
-          this.speed = 5;
+          this.speed = 7;
           score.human = 0;
           score.ai = 0;
-          rightPaddle.speed = 4;
+          rightPaddle.speed = 5;
         },
         move() {
           this.x += this.directionX * this.speed;
