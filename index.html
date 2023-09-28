@@ -50,7 +50,7 @@
         x: gapX,
         y: 0,
         width: net.width,
-        height: 120,
+        height: 140,
         move() {
           this.y = mouse.y - this.height / 2;
         },
@@ -64,8 +64,8 @@
         x: field.width - gapX - net.width,
         y: 0,
         width: net.width,
-        height: 120,
-        speed: 4,
+        height: 140,
+        speed: 5,
         move() {
           if (this.y + this.height / 2 < ball.y + ball.radius) {
             this.y += this.speed;
@@ -74,7 +74,7 @@
           }
         },
         speedUp() {
-          this.speed += 0.7;
+          this.speed += 1.2;
         },
         draw() {
           canvasCtx.fillRect(this.x, this.y, this.width, this.height);
@@ -128,9 +128,9 @@
 
       const ball = {
         x: 100,
-        y: 100,
+        y: field.height / 2,
         radius: 10,
-        speed: 5,
+        speed: 6,
         directionX: 1,
         directionY: 1,
 
@@ -180,7 +180,7 @@
           this.x = field.width / 2;
           this.y = field.height / 2;
           this.directionX *= -1;
-          this.speed += 1;
+          this.speed += 2;
           rightPaddle.speedUp();
           rightPaddle.y = field.height / 2;
         },
