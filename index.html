@@ -94,13 +94,36 @@
         },
       };
 
+      let isGameOver = false;
+
       function checkGameOver() {
-        if (score.human === 5 || score.ai === 5) {
-          // Game over, reset scores and ball
+        if (score.human === 5) {
+          showWinner("Player");
+        } else if (score.ai === 5) {
+          showWinner("Computer");
+        }
+      }
+
+      function showWinner(winner) {
+        isGameOver = true;
+        canvasCtx.fillStyle = "#ffffff";
+        canvasCtx.font = "bold 48px Arial";
+        canvasCtx.textAlign = "center";
+        canvasCtx.fillText(`${winner} won!`, field.width / 2, field.height / 2);
+        canvasCtx.font = "bold 24px Arial";
+        canvasCtx.fillText(
+          "The game will restart in 10 seconds",
+          field.width / 2,
+          field.height / 2 + 50
+        );
+
+        setTimeout(() => {
+          canvasCtx.clearRect(0, 0, field.width, field.height);
           score.human = 0;
           score.ai = 0;
           ball.gameReset();
-        }
+          isGameOver = false;
+        }, 10000);
       }
 
       const ball = {
@@ -214,7 +237,9 @@
 
       function main() {
         animateFrame(main);
-        draw();
+        if (!isGameOver) {
+          draw();
+        }
       }
 
       setup();
